@@ -1,0 +1,22 @@
+
+spring:
+  config:
+    activate:
+      on-profile: production
+    import: file:config/secrets.yml
+
+  security:
+    oauth2:
+      client:
+        registration:
+          spotify:
+            client-id: ${secrets.spotify.client-id}
+            client-secret: ${secrets.spotify.client-secret}
+            redirect-uri: http://localhost:8080/playlister
+            client-name: Playlister
+            scope: playlist-read-private
+        provider:
+          spotify:
+            authorization-uri: https://accounts.spotify.com/authorize
+            token-uri: https://accounts.spotify.com/api/token
+
